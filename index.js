@@ -26,7 +26,9 @@ const inventory = [
  * @param {Item[]} items - array of items
  */
 function logNames(items) {
-  // TODO: use `forEach`
+  items.forEach((groceryItem) => {
+    console.log(groceryItem.name);
+  });
 }
 
 /**
@@ -34,7 +36,10 @@ function logNames(items) {
  * @returns {string[]} an array of item names in all uppercase
  */
 function getUppercaseNames(items) {
-  // TODO: use `map`
+  const upperCaseNames = items.map((groceryItem) =>
+    groceryItem.name.toUpperCase()
+  );
+  return upperCaseNames;
 }
 
 /**
@@ -43,7 +48,8 @@ function getUppercaseNames(items) {
  * @returns {Item} - the item in `items` with the given `id`
  */
 function getItemById(items, id) {
-  // TODO: use `find`
+  const foundItem = items.find((groceryItem) => groceryItem.id === id);
+  return foundItem;
 }
 
 /**
@@ -52,7 +58,11 @@ function getItemById(items, id) {
  * @returns {number} the price of the item named `name` if found
  */
 function getItemPriceByName(items, name) {
-  // TODO: use a loop!
+  for (const item of items) {
+    if (item.name === name) {
+      return item.price;
+    }
+  }
 }
 
 /**
@@ -61,7 +71,10 @@ function getItemPriceByName(items, name) {
  * @returns {Item[]} array of items that belong to the given `category`
  */
 function getItemsByCategory(items, category) {
-  // TODO: use `filter`
+  const results = items.filter(
+    (groceryItem) => groceryItem.category === category
+  );
+  return results;
 }
 
 /**
@@ -69,7 +82,11 @@ function getItemsByCategory(items, category) {
  * @returns {number} the total quantity of all items
  */
 function countItems(items) {
-  // TODO: use `reduce`
+  const totalQuantity = items.reduce(
+    (totalQuantity, currentItem) => (totalQuantity += currentItem.quantity),
+    0
+  );
+  return totalQuantity;
 }
 
 /**
@@ -77,7 +94,12 @@ function countItems(items) {
  * @returns {number} the cost of all given items
  */
 function getTotalPrice(items) {
-  // TODO: use `reduce`
+  const totalPrice = items.reduce(
+    (totalValue, currentItem) =>
+      totalValue + currentItem.quantity * currentItem.price,
+    0
+  );
+  return totalPrice;
 }
 
 // === READ BUT DO NOT CHANGE THE CODE BELOW ===
